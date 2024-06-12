@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maaz Pasha - Portfolio</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+      /* Add custom styles here if needed */
+      .footer {
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        background-color: #25282a;
+        padding: -10px;
+        text-align: center;
+        color: white;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: #000428;
+        /* deep blue */
+        background: linear-gradient(to right, #004e92, #000428);
+        /* Gradient */
+        color: #ffffff;
+        overflow-x: hidden;
+        perspective: 1000px;
+      }
+
+      .body-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #25282a;
+        background: linear-gradient(135deg, #0b0b0a, #6f96af, #9e3274);
+        transform-origin: top;
+
+      }
+
+
+
+
+      .navbar {
+        position: fixed;
+        top: -50px;
+        width: 100%;
+        z-index: 1000;
+        /* Ensure the navbar stays on top */
+        background-color: white;
+      }
+
+      a {
+        color: rgb(15, 58, 96);
+      }
+
+      .navbar-toggler:focus {
+        outline: none;
+        /* Remove outline on click */
+      }
+
+      .navbar-toggler-icon {
+        border-color: #ada5a5;
+        position: relative;
+        width: 24px;
+        height: 2px;
+        background-color: #766f6f;
+        display: grid;
+        outline: none;
+      }
+
+      .navbar-toggler-icon::before,
+      .navbar-toggler-icon::after {
+        content: '';
+        position: relative;
+        width: 100%;
+        height: 2px;
+        background-color: #8b8585;
+        top: 0;
+      }
+
+      .navbar-toggler-icon::before {
+        top: 4px;
+      }
+
+      .navbar-toggler-icon::after {
+        top: 6.5px;
+      }
+
+      h2 {
+        text-shadow:
+          1px 1px 0 #0f595400,
+          2px 2px 0 #991dce19,
+          3px 3px 0 #a08f89;
+      }
+
+      p {
+        font-style: oblique;
+        color: white;
+        font-size: larger;
+      }
+
+      .container {
+        color: white;
+        padding: 40px;
+        margin-bottom: -5px;
+        opacity: 0;
+        /* Initially hide the content */
+        animation: slideIn 1s forwards;
+        /* Define animation */
+      }
+
+      /* Define animation keyframes */
+      @keyframes slideIn {
+        0% {
+          opacity: 0;
+          transform: translateY(-100%);
+        }
+
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .footer a {
+        color: white !important;
+      }
+
+      h3 {
+        color: goldenrod;
+        line-height: 1.5;
+      }
+
+      .card-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        perspective: 1000px;
+      }
+
+      /* CSS for individual cards */
+      .card {
+        width: 800px;
+        height: 600px;
+        background-color: #f8f0f6;
+        border-radius: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transform-style: preserve-3d;
+
+
+      }
+
+      /* CSS for card front and back faces */
+      .card-front,
+      .card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+      }
+
+      /* CSS for front face */
+      .card-front {
+        background-color: #423434;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      /* CSS for back face */
+      /* CSS for card back face */
+      .card-back {
+        background-color: #bc9e1acf;
+        transform: rotateY(180deg);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* Adjust alignment */
+        flex-direction: column;
+        padding: 20px;
+        overflow-y: auto;
+        /* Add overflow-y for scrolling */
+        max-height: 600px;
+        /* Adjust max-height as needed */
+      }
+
+
+      /* CSS for hover effect */
+      .card:hover {
+        transform: rotateY(180deg);
+      }
+
+      /* CSS for links inside card back */
+      .card-back a {
+        text-decoration: none;
+        color: #0f0f0f;
+        margin-top: 20px;
+      }
+
+      /* Style for scroll-to-top button */
+      #scrollToTop {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #766972;
+        /* Example color */
+        color: #fff;
+        /* Example color */
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 40px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        z-index: 9999;
+        /* Ensure it's above other content */
+      }
+
+
+      /* Style for scroll-to-top button on hover */
+      #scrollToTop:hover {
+        background-color: #0056b3;
+        /* Example color */
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" href="#"><em>Maaz Pasha's Portfolio</em> </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item">
+            <a class="nav-link" href="#about"><i class="fas fa-user"></i> About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="techLink" href="#tech"><i class="fas fa-cogs"></i> Technologies</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#projects"><i class="fas fa-folder-open"></i> Projects</a>
+          </li>
+
+
+          <li class="nav-item">
+            <a class="nav-link" href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Background -->
+    <div class="body-background"></div>
+
+    <!-- Header content -->
+    <div class="container mt-5">
+      <h2>Hey!</h2>
+      <h2>I'am Maaz Pasha</h2>
+      <p>Welcome to my portfolio website! Here, you can quickly browse through my projects and the technologies I work
+        with. Feel free to access the contact section for any queries or collaboration opportunities.</p><br>
+
+
+      <!--about section-->
+      <section id="about">
+        <h3>About Me</h3>
+        <p> I'm a Computer Science student with skills in C, C++, Python and sql databses. I've also gained experience
+          in frontend web
+          development and I'm eager to become a Full Stack Web Developer. I enjoy coding, problem-solving, and building
+          dynamic web solutions. Currently seeking an internship or job to enhance my skills and contribute to web
+          technology innovation.</p><br>
+        <p>Enthusiastic individual proficient in C, Python, HTML, CSS, and JavaScript, currently pursuing a degree in
+          Computer Science. Seeking opportunities to apply this comprehensive knowledge in a real-world environment, I
+          am
+          eager to contribute and learn in a professional setting despite having no formal work experience.</p>
+      </section>
+    </div>
+
+
+    <!-- Technologies Section -->
+    <div class="container mt-3">
+      <section id="tech">
+        <h3 class="mb-3">My Tech Stack</h3>
+        <p>
+          Experienced in developing dynamic web solutions and applications using a diverse range of programming
+          languages and tools.
+          Passionate about leveraging technology to solve real-world problems and create engaging user experiences.
+        </p><br>
+
+        <div class="row mb-3">
+          <div class="col-md-3">
+            <img src="C:\portfolio folder\logos\0.png" alt="C Logo" class="img-fluid" width="70%">
+            <p class="text-center mt-2">C</p>
+          </div>
+          <div class="col-md-3">
+            <img src="C:\portfolio folder\logos\00.png" alt="C++ Logo" class="img-fluid" width="70%">
+            <p class="text-center mt-2">C++</p>
+          </div>
+          <div class="col-md-3">
+            <img src="C:\portfolio folder\logos\01.png" alt="Python Logo" class="img-fluid" width="70%">
+            <p class="text-center mt-2">Python</p>
+          </div>
+          <div class="col-md-3">
+            <img src="C:\portfolio folder\logos\03.png" alt="HTML Logo" class="img-fluid" width="80%">
+            <p class="text-center mt-2">HTML</p>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-3">
+            <img src="C:\portfolio folder\logos\04.png" alt="CSS Logo" class="img-fluid" width="65%">
+            <p class="text-center mt-2">CSS</p>
+          </div>
+          <div class="col-md-3">
+            <img src="C:\portfolio folder\logos\05.png" alt="JavaScript Logo" class="img-fluid" width="100%">
+            <p class="text-center mt-2">JavaScript</p>
+          </div>
+          <div class="col-md-3">
+            <img src="C:\portfolio folder\logos\06.png" alt="Bootstrap Logo" class="img-fluid" width="100%">
+            <p class="text-center mt-2">Bootstrap</p>
+          </div>
+          <div class="col-md-3">
+            <img src="C:\portfolio folder\logos\sq.png" alt="sql Logo" class="img-fluid" width="100%">
+            <p class="text-center mt-2">sql Databases</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+
+    <section id="projects">
+      <div class="container mt-3">
+        <h3 class="mb-3">My Projects</h3>
+
+        <div class="row justify-content-center"> <!-- Center the row -->
+          <!-- card 1 -->
+          <div class="col-md-6 mb-5">
+            <div class="card-container">
+              <div class="card">
+                <div class="card-front">
+                  <h4><em>Phishing Website Analyser</em><br>
+                    <p>[Python, Flask, HTML, CSS, Sockets]</p>
+                  </h4>
+                  <p>The Phishing Website Analyzer is a Python project that helps users identify potential phishing
+                    websites. Using Python and its libraries, it examines key aspects of a website like URL structure,
+                    SSL certificates, HTML content, and domain reputation. By analyzing these factors, the tool gives
+                    users insights into whether a website might be a phishing attempt. It's a simple yet effective way
+                    to stay safe online by avoiding potentially malicious websites.</p>
+                </div>
+                <div class="card-back">
+                  <h4>PROJECT DETAILS</h4>
+                  <p>You're welcome to dive deeper into the project to discover more about its functionality and
+                    features.</p>
+                  <a href="pro1details.html">Read More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="col-md-6 mb-5">
+            <div class="card-container">
+              <div class="card">
+                <div class="card-front">
+                  <h4><em>Network Intrusion Detection System</em><br>
+                    <p>[Python, Flask, logging, asyncio]</p>
+                  </h4>
+                  <p>
+
+                    Our NIDS project leverages Python and Flask to develop a robust system capable of monitoring
+                    network traffic in real-time. Utilizing asynchronous programming with asyncio, we ensure efficient
+                    handling of incoming data. Through integration with tools like tshark and custom packet analysis
+                    algorithms, our NIDS identifies and alerts on suspicious activities also
+                    Enhanced with logging and subprocess management, our solution provides comprehensive insight into
+                    network threats.</p>
+                </div>
+                <div class="card-back">
+                  <h4>PROJECT DETAILS</h4>
+                  <p>You're welcome to dive deeper into the project to discover more about its functionality and
+                    features.</p>
+                  <a href="pro2details.html">Read More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="col-md-6 mb-5">
+            <div class="card-container">
+              <div class="card">
+                <div class="card-front">
+                  <h4><em>Facical Recognition Voting System</em><br>
+                    <p>[Python, MYSQL, OpenCV, scikit-learn, Flask-Mail]</p>
+                  </h4>
+                  <p>Employing OpenCV and face-recognition, our system ensures secure voter verification through facial
+                    recognition. We've crafted a user-friendly Flask web interface facilitating voter registration,
+                    image capture, and voting processes. Integration with Flask-Mail and smtplib guarantees email
+                    verification, ensuring the integrity of voter email addresses.
+                    MySQL efficiently handles the storage and management of voter and vote data, providing a robust
+                    foundation for our voting system.</p>
+                </div>
+                <div class="card-back">
+                  <h4>PROJECT DETAILS</h4>
+                  <p>You're welcome to dive deeper into the project to discover more about its functionality and
+                    features. </p>
+                  <a href="pro3details.html">Read More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Add more cards as needed -->
+        </div>
+      </div>
+    </section>
+
+
+
+    <!--scrooling icon-->
+    <a id="scrollToTop"><i class="fas fa-arrow-up"></i></a>
+
+
+
+    <!--contact ection-->
+    <div class="container mt-3">
+      <section id="contact">
+        <h4 align="center"><a href="contact me.html">👉 Contact me 👈</a></h4>
+      </section>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <ul class="list-inline mb-0">
+          <li class="list-inline-item mr-3">
+            <a href="https://github.com/MaazPasha" target="_blank"><i class="fab fa-github"></i></a>
+          </li>
+          <li class="list-inline-item mr-3">
+            <a href="http://linkedin.com/in/maaz-pasha-" target="_blank"><i class="fab fa-linkedin"></i></a>
+          </li>
+          <li class="list-inline-item">
+            <a href="mailto:maazpasham@gmail.com"><i class="fas fa-envelope"></i></a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+
+    <!-- Bootstrap and Font Awesome scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      // Function to scroll to the "About" section
+      document.getElementById('aboutLink').addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.getElementById('about');
+        if (target) {
+          const offsetTop = target.getBoundingClientRect().top + window.pageYOffset;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+
+      // Function to scroll to the "Projects" section
+      document.getElementById('projectsLink').addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.getElementById('projects');
+        if (target) {
+          const offsetTop = target.getBoundingClientRect().top + window.pageYOffset;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+
+      // Function to scroll to the "Contact Me" section
+      document.getElementById('contactLink').addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.getElementById('contact');
+        if (target) {
+          const offsetTop = target.getBoundingClientRect().top + window.pageYOffset;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+
+      document.getElementById('aboutLink').addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.getElementById('tech');
+        if (target) {
+          const offsetTop = target.getBoundingClientRect().top + window.pageYOffset;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+
+    </script>
+    <script>
+      // Function to smoothly scroll to the top of the page
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+
+      // Add click event listener to scroll-to-top button
+      document.getElementById('scrollToTop').addEventListener('click', scrollToTop);
+    </script>
+
+
+
+
+
+
+  </body>
+
+</html>
